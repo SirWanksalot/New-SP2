@@ -1,0 +1,86 @@
+﻿  Application.cpp
+D:\Windows Kits\10\Include\10.0.18362.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
+  Camera.cpp
+  Camera2.cpp
+  Collision_detector.cpp
+  DriveScene.cpp
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\glfw\include\GLFW\glfw3.h(104): message : see previous definition of 'APIENTRY'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\DriveScene.cpp(182,41): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\DriveScene.cpp(183,43): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\DriveScene.cpp(191,48): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\DriveScene.cpp(192,51): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\DriveScene.cpp(193,50): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\DriveScene.cpp(194,47): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\DriveScene.cpp(195,51): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\DriveScene.cpp(196,47): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\DriveScene.cpp(339,40): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\DriveScene.cpp(343,40): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\DriveScene.cpp(359,34): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+  FirstPersonCamera.cpp
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\DriveScene.cpp(367,34): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+  Loadcornercoord.cpp
+  LoadOBJ.cpp
+  LoadTGA.cpp
+  main.cpp
+  Mesh.cpp
+  MeshBuilder.cpp
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\FirstPersonCamera.cpp(29,21): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\MeshBuilder.cpp(28,14): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\MeshBuilder.cpp(31,20): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\MeshBuilder.cpp(34,17): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\MeshBuilder.cpp(37,23): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\MeshBuilder.cpp(40,20): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\MeshBuilder.cpp(43,26): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\MeshBuilder.cpp(91,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\MeshBuilder.cpp(92,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\MeshBuilder.cpp(151,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\MeshBuilder.cpp(152,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  SceneManager.cpp
+  SceneSkybox.cpp
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\MeshBuilder.cpp(153,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(213,43): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(214,43): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(215,43): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(216,43): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(225,40): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(226,42): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(235,50): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(236,53): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(237,52): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(238,49): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(239,53): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(240,49): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(249,39): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(259,53): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(260,54): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(261,53): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(262,53): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(281,53): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(282,54): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(283,52): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(284,53): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(293,39): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(294,39): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(303,53): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(304,54): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(305,53): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(306,46): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(307,54): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(308,46): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(327,43): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(348,49): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(349,49): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(350,48): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(351,49): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(352,49): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(353,48): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(354,50): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(355,50): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(356,49): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(410,74): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  shader.cpp
+  Utility.cpp
+  Generating Code...
+C:\Users\admin\Documents\GitHub\New-SP2\SP2\DM2122 Prac\Source\SceneSkybox.cpp(410,134): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+  DM2122 Prac.vcxproj -> C:\Users\admin\Documents\GitHub\New-SP2\SP2\Debug\DM2122 Prac.exe
