@@ -7,7 +7,6 @@
 #include "Utility.h"
 #include "LoadTGA.h"
 #include <string>
-#include "SceneManager.h"
 
 #define ROT_LIMIT 45.f;
 #define SCALE_LIMIT 5.f;
@@ -171,100 +170,199 @@ void DriveScene::Init()
 	Aplayer.translate = Vector3(0, 0, 5);
 	Aplayer.RotateY.degree += 180;
 
-	meshList[GEO_TRACK] = MeshBuilder::GenerateOBJ("track", "OBJ//track.obj");
-	meshList[GEO_TRACK]->textureID = LoadTGA("Image//track.tga");
+	Acarnumber = 0;
 
-	meshList[GEO_CAR1BODY] = MeshBuilder::GenerateOBJ("Car1", "OBJ//GuangThengCarBody.obj");
-	meshList[GEO_CAR1BODY]->textureID = LoadTGA("Image//GuangThengCarTex.tga");
-	meshList[GEO_CAR1BODY]->material.kAmbient.Set(0.7f, 0.7f, 0.7f);
-	meshList[GEO_CAR1BODY]->material.kDiffuse.Set(1.f, 1.f, 1.f);
-	meshList[GEO_CAR1BODY]->material.kSpecular.Set(1.f, 1.f, 1.f);
-	meshList[GEO_CAR1BODY]->material.kShininess = 1.f;
-	ACarBody.translate = Vector3(0, 2.05, 0);
-	ACarBody.Scale = Vector3(1.55, 1.55, 1.55);
+	if (Acarnumber == 0)
+	{
+		meshList[GEO_CARBODY] = MeshBuilder::GenerateOBJ("Car1", "OBJ//GuangThengCarBody.obj");
+		meshList[GEO_CARBODY]->textureID = LoadTGA("Image//GuangThengCarTex.tga");
+		meshList[GEO_CARBODY]->material.kAmbient.Set(0.7f, 0.7f, 0.7f);
+		meshList[GEO_CARBODY]->material.kDiffuse.Set(1.f, 1.f, 1.f);
+		meshList[GEO_CARBODY]->material.kSpecular.Set(1.f, 1.f, 1.f);
+		meshList[GEO_CARBODY]->material.kShininess = 1.f;
+		ACarBody.translate = Vector3(-130, 2.05, 140);
+		ACarBody.Scale = Vector3(1.55, 1.55, 1.55);
 
-	meshList[GEO_CAR1WHEEL] = MeshBuilder::GenerateOBJ("Car1Wheel", "OBJ//GuangThengCarWheel.obj");
-	meshList[GEO_CAR1WHEEL]->textureID = LoadTGA("Image//GuangThengCarTex.tga");
-	meshList[GEO_CAR1WHEEL]->material.kAmbient.Set(0.7f, 0.7f, 0.7f);
-	meshList[GEO_CAR1WHEEL]->material.kDiffuse.Set(1.f, 1.f, 1.f);
-	meshList[GEO_CAR1WHEEL]->material.kSpecular.Set(1.f, 1.f, 1.f);
-	meshList[GEO_CAR1WHEEL]->material.kShininess = 1.f;
-	ACarWheel[0].translate = Vector3(2, -0.4, -2.8);
-	ACarWheel[1].translate = Vector3(-2.1, -0.4, -2.8);
-	ACarWheel[2].translate = Vector3(2.05, -0.4, 2.8);
-	ACarWheel[2].Scale = Vector3(1.18, 1.18, 1.18);
-	ACarWheel[3].translate = Vector3(-2.15, -0.4, 2.8);
-	ACarWheel[3].Scale = Vector3(1.18, 1.18, 1.18);
+		meshList[GEO_CARWHEEL] = MeshBuilder::GenerateOBJ("Car1Wheel", "OBJ//GuangThengCarWheel.obj");
+		meshList[GEO_CARWHEEL]->textureID = LoadTGA("Image//GuangThengCarTex.tga");
+		meshList[GEO_CARWHEEL]->material.kAmbient.Set(0.7f, 0.7f, 0.7f);
+		meshList[GEO_CARWHEEL]->material.kDiffuse.Set(1.f, 1.f, 1.f);
+		meshList[GEO_CARWHEEL]->material.kSpecular.Set(1.f, 1.f, 1.f);
+		meshList[GEO_CARWHEEL]->material.kShininess = 1.f;
+		ACarWheel[0].translate = Vector3(2, -0.4, -2.8);
+		ACarWheel[1].translate = Vector3(-2.1, -0.4, -2.8);
+		ACarWheel[2].translate = Vector3(2.05, -0.4, 2.8);
+		ACarWheel[2].Scale = Vector3(1.18, 1.18, 1.18);
+		ACarWheel[3].translate = Vector3(-2.15, -0.4, 2.8);
+		ACarWheel[3].Scale = Vector3(1.18, 1.18, 1.18);
+	}
+	else if (Acarnumber == 1)
+	{
+		meshList[GEO_CARBODY] = MeshBuilder::GenerateOBJ("Car2", "OBJ//RyanCarBody.obj");
+		meshList[GEO_CARBODY]->textureID = LoadTGA("Image//RyanCarBodyTex.tga");
+		meshList[GEO_CARBODY]->material.kAmbient.Set(0.7f, 0.7f, 0.7f);
+		meshList[GEO_CARBODY]->material.kDiffuse.Set(1.f, 1.f, 1.f);
+		meshList[GEO_CARBODY]->material.kSpecular.Set(1.f, 1.f, 1.f);
+		meshList[GEO_CARBODY]->material.kShininess = 1.f;
+		ACarBody.translate = Vector3(0, 3.2, 0);
+		ACarBody.Scale = Vector3(2, 2, 2);
 
-	//meshList[GEO_CAR2BODY] = MeshBuilder::GenerateOBJ("Car2", "OBJ//RyanCarBody.obj");
-	//meshList[GEO_CAR2BODY]->textureID = LoadTGA("Image//RyanCarBodyTex.tga");
-	//meshList[GEO_CAR2BODY]->material.kAmbient.Set(0.7f, 0.7f, 0.7f);
-	//meshList[GEO_CAR2BODY]->material.kDiffuse.Set(1.f, 1.f, 1.f);
-	//meshList[GEO_CAR2BODY]->material.kSpecular.Set(1.f, 1.f, 1.f);
-	//meshList[GEO_CAR2BODY]->material.kShininess = 1.f;
-	//ACarBody.translate = Vector3(0, 3.2, 0);
-	//ACarBody.Scale = Vector3(2, 2, 2);
+		meshList[GEO_CARWHEEL] = MeshBuilder::GenerateOBJ("Car2Wheel", "OBJ//RyanCarWheel.obj");
+		meshList[GEO_CARWHEEL]->textureID = LoadTGA("Image//RyanCarWheelTex.tga");
+		meshList[GEO_CARWHEEL]->material.kAmbient.Set(0.7f, 0.7f, 0.7f);
+		meshList[GEO_CARWHEEL]->material.kDiffuse.Set(1.f, 1.f, 1.f);
+		meshList[GEO_CARWHEEL]->material.kSpecular.Set(1.f, 1.f, 1.f);
+		meshList[GEO_CARWHEEL]->material.kShininess = 1.f;
+		ACarWheel[0].translate = Vector3(0.7, -0.95, -1.2);
+		ACarWheel[1].translate = Vector3(-1.3, -0.95, -1.2);
+		ACarWheel[2].translate = Vector3(0.75, -0.95, 1.7);
+		ACarWheel[3].translate = Vector3(-1.3, -0.95, 1.7);
+	}
+	else if (Acarnumber == 2)
+	{
+		meshList[GEO_CARBODY] = MeshBuilder::GenerateOBJ("Car3", "OBJ//JCCarBody.obj");
+		meshList[GEO_CARBODY]->textureID = LoadTGA("Image//JCCarTex.tga");
+		meshList[GEO_CARBODY]->material.kAmbient.Set(0.7f, 0.7f, 0.7f);
+		meshList[GEO_CARBODY]->material.kDiffuse.Set(1.f, 1.f, 1.f);
+		meshList[GEO_CARBODY]->material.kSpecular.Set(1.f, 1.f, 1.f);
+		meshList[GEO_CARBODY]->material.kShininess = 1.f;
+		ACarBody.translate = Vector3(0, 3, 0);
+		ACarBody.Scale = Vector3(2, 2, 2);
 
-	//meshList[GEO_CAR2WHEEL] = MeshBuilder::GenerateOBJ("Car2Wheel", "OBJ//RyanCarWheel.obj");
-	//meshList[GEO_CAR2WHEEL]->textureID = LoadTGA("Image//RyanCarWheelTex.tga");
-	//meshList[GEO_CAR2WHEEL]->material.kAmbient.Set(0.7f, 0.7f, 0.7f);
-	//meshList[GEO_CAR2WHEEL]->material.kDiffuse.Set(1.f, 1.f, 1.f);
-	//meshList[GEO_CAR2WHEEL]->material.kSpecular.Set(1.f, 1.f, 1.f);
-	//meshList[GEO_CAR2WHEEL]->material.kShininess = 1.f;
-	//ACarWheel[0].translate = Vector3(0.7, -0.95, -1.2);
-	//ACarWheel[1].translate = Vector3(-1.3, -0.95, -1.2);
-	//ACarWheel[2].translate = Vector3(0.75, -0.95, 1.7);
-	//ACarWheel[3].translate = Vector3(-1.3, -0.95, 1.7);
+		meshList[GEO_CARWHEEL] = MeshBuilder::GenerateOBJ("Car3Wheel", "OBJ//JCCarWheel.obj");
+		meshList[GEO_CARWHEEL]->textureID = LoadTGA("Image//JCCarTex.tga");
+		meshList[GEO_CARWHEEL]->material.kAmbient.Set(0.7f, 0.7f, 0.7f);
+		meshList[GEO_CARWHEEL]->material.kDiffuse.Set(1.f, 1.f, 1.f);
+		meshList[GEO_CARWHEEL]->material.kSpecular.Set(1.f, 1.f, 1.f);
+		meshList[GEO_CARWHEEL]->material.kShininess = 1.f;
+		ACarWheel[0].translate = Vector3(1.8, -0.86, -2.1);
+		ACarWheel[1].translate = Vector3(-1.8, -0.86, -2.1);
+		ACarWheel[2].translate = Vector3(1.8, -0.86, 2.1);
+		ACarWheel[3].translate = Vector3(-1.8, -0.86, 2.1);
+	}
+	else if (Acarnumber == 3)
+	{
+		meshList[GEO_CARBODY] = MeshBuilder::GenerateOBJ("Car4", "OBJ//JianFengCarBody.obj");
+		meshList[GEO_CARBODY]->textureID = LoadTGA("Image//JianFengCarTex.tga");
+		meshList[GEO_CARBODY]->material.kAmbient.Set(0.7f, 0.7f, 0.7f);
+		meshList[GEO_CARBODY]->material.kDiffuse.Set(1.f, 1.f, 1.f);
+		meshList[GEO_CARBODY]->material.kSpecular.Set(1.f, 1.f, 1.f);
+		meshList[GEO_CARBODY]->material.kShininess = 1.f;
+		ACarBody.translate = Vector3(0, 4.7, 0);
+		ACarBody.Scale = Vector3(1.7, 1.7, 1.7);
 
-	//meshList[GEO_CAR3BODY] = MeshBuilder::GenerateOBJ("Car3", "OBJ//JCCarBody.obj");
-	//meshList[GEO_CAR3BODY]->textureID = LoadTGA("Image//JCCarTex.tga");
-	//meshList[GEO_CAR3BODY]->material.kAmbient.Set(0.7f, 0.7f, 0.7f);
-	//meshList[GEO_CAR3BODY]->material.kDiffuse.Set(1.f, 1.f, 1.f);
-	//meshList[GEO_CAR3BODY]->material.kSpecular.Set(1.f, 1.f, 1.f);
-	//meshList[GEO_CAR3BODY]->material.kShininess = 1.f;
-	//ACarBody.translate = Vector3(0, 3, 0);
-	//ACarBody.Scale = Vector3(2, 2, 2);
+		meshList[GEO_CARWHEEL] = MeshBuilder::GenerateOBJ("Car4Wheel", "OBJ//JianFengCarWheel.obj");
+		meshList[GEO_CARWHEEL]->textureID = LoadTGA("Image//JianFengCarTex.tga");
+		meshList[GEO_CARWHEEL]->material.kAmbient.Set(0.7f, 0.7f, 0.7f);
+		meshList[GEO_CARWHEEL]->material.kDiffuse.Set(1.f, 1.f, 1.f);
+		meshList[GEO_CARWHEEL]->material.kSpecular.Set(1.f, 1.f, 1.f);
+		meshList[GEO_CARWHEEL]->material.kShininess = 1.f;
+		ACarWheel[0].translate = Vector3(1.45, -1.5, -2.5);
+		ACarWheel[1].translate = Vector3(-1.45, -1.5, -2.5);
+		ACarWheel[2].translate = Vector3(1.55, -1.35, 2.5);
+		ACarWheel[2].Scale = Vector3(1.2, 1.2, 1.2);
+		ACarWheel[3].translate = Vector3(-1.77, -1.35, 2.5);
+		ACarWheel[3].Scale = Vector3(1.2, 1.2, 1.2);
+	}
 
-	//meshList[GEO_CAR3WHEEL] = MeshBuilder::GenerateOBJ("Car3Wheel", "OBJ//JCCarWheel.obj");
-	//meshList[GEO_CAR3WHEEL]->textureID = LoadTGA("Image//JCCarTex.tga");
-	//meshList[GEO_CAR3WHEEL]->material.kAmbient.Set(0.7f, 0.7f, 0.7f);
-	//meshList[GEO_CAR3WHEEL]->material.kDiffuse.Set(1.f, 1.f, 1.f);
-	//meshList[GEO_CAR3WHEEL]->material.kSpecular.Set(1.f, 1.f, 1.f);
-	//meshList[GEO_CAR3WHEEL]->material.kShininess = 1.f;
-	//ACarWheel[0].translate = Vector3(1.8, -0.86, -2.1);
-	//ACarWheel[1].translate = Vector3(-1.8, -0.86, -2.1);
-	//ACarWheel[2].translate = Vector3(1.8, -0.86, 2.1);
-	//ACarWheel[3].translate = Vector3(-1.8, -0.86, 2.1);
+	meshList[GEO_BUILDING1] = MeshBuilder::GenerateOBJ("building1", "OBJ//firstbuilding.obj");
+	meshList[GEO_BUILDING1]->textureID = LoadTGA("Image//firstbuilding.tga");
+	meshList[GEO_BUILDING1]->material.kAmbient.Set(0.7f, 0.7f, 0.7f);
+	meshList[GEO_BUILDING1]->material.kDiffuse.Set(1.f, 1.f, 1.f);
+	meshList[GEO_BUILDING1]->material.kSpecular.Set(1.f, 1.f, 1.f);
+	meshList[GEO_BUILDING1]->material.kShininess = 1.f;
+	ABuilding[0].translate = Vector3(0, 5, 0);
 
-	//meshList[GEO_CAR4BODY] = MeshBuilder::GenerateOBJ("Car4", "OBJ//JianFengCarBody.obj");
-	//meshList[GEO_CAR4BODY]->textureID = LoadTGA("Image//JianFengCarTex.tga");
-	//meshList[GEO_CAR4BODY]->material.kAmbient.Set(0.7f, 0.7f, 0.7f);
-	//meshList[GEO_CAR4BODY]->material.kDiffuse.Set(1.f, 1.f, 1.f);
-	//meshList[GEO_CAR4BODY]->material.kSpecular.Set(1.f, 1.f, 1.f);
-	//meshList[GEO_CAR4BODY]->material.kShininess = 1.f;
-	//ACarBody.translate = Vector3(0, 4.7, 0);
-	//ACarBody.Scale = Vector3(1.7, 1.7, 1.7);
+	meshList[GEO_BUILDING2] = MeshBuilder::GenerateOBJ("building2", "OBJ//secondbuilding.obj");
+	meshList[GEO_BUILDING2]->textureID = LoadTGA("Image//secondbuilding.tga");
+	meshList[GEO_BUILDING2]->material.kAmbient.Set(0.7f, 0.7f, 0.7f);
+	meshList[GEO_BUILDING2]->material.kDiffuse.Set(1.f, 1.f, 1.f);
+	meshList[GEO_BUILDING2]->material.kSpecular.Set(1.f, 1.f, 1.f);
+	meshList[GEO_BUILDING2]->material.kShininess = 1.f;
+	ABuilding[1].translate = Vector3(10, 5, 0);
 
-	//meshList[GEO_CAR4WHEEL] = MeshBuilder::GenerateOBJ("Car4Wheel", "OBJ//JianFengCarWheel.obj");
-	//meshList[GEO_CAR4WHEEL]->textureID = LoadTGA("Image//JianFengCarTex.tga");
-	//meshList[GEO_CAR4WHEEL]->material.kAmbient.Set(0.7f, 0.7f, 0.7f);
-	//meshList[GEO_CAR4WHEEL]->material.kDiffuse.Set(1.f, 1.f, 1.f);
-	//meshList[GEO_CAR4WHEEL]->material.kSpecular.Set(1.f, 1.f, 1.f);
-	//meshList[GEO_CAR4WHEEL]->material.kShininess = 1.f;
-	//ACarWheel[0].translate = Vector3(1.45, -1.5, -2.5);
-	//ACarWheel[1].translate = Vector3(-1.45, -1.5, -2.5);
-	//ACarWheel[2].translate = Vector3(1.55, -1.35, 2.5);
-	//ACarWheel[2].Scale = Vector3(1.2, 1.2, 1.2);
-	//ACarWheel[3].translate = Vector3(-1.77, -1.35, 2.5);
-	//ACarWheel[3].Scale = Vector3(1.2, 1.2, 1.2);
+	meshList[GEO_BUILDING3] = MeshBuilder::GenerateOBJ("building3", "OBJ//thirdbuilding.obj");
+	meshList[GEO_BUILDING3]->textureID = LoadTGA("Image//thirdbuilding.tga");
+	meshList[GEO_BUILDING3]->material.kAmbient.Set(0.7f, 0.7f, 0.7f);
+	meshList[GEO_BUILDING3]->material.kDiffuse.Set(1.f, 1.f, 1.f);
+	meshList[GEO_BUILDING3]->material.kSpecular.Set(1.f, 1.f, 1.f);
+	meshList[GEO_BUILDING3]->material.kShininess = 1.f;
+	ABuilding[2].translate = Vector3(20, 5, 0);
+
+	meshList[GEO_BUILDING4] = MeshBuilder::GenerateOBJ("building4", "OBJ//fourthbuilding.obj");
+	meshList[GEO_BUILDING4]->textureID = LoadTGA("Image//fourthbuilding.tga");
+	meshList[GEO_BUILDING4]->material.kAmbient.Set(0.7f, 0.7f, 0.7f);
+	meshList[GEO_BUILDING4]->material.kDiffuse.Set(1.f, 1.f, 1.f);
+	meshList[GEO_BUILDING4]->material.kSpecular.Set(1.f, 1.f, 1.f);
+	meshList[GEO_BUILDING4]->material.kShininess = 1.f;
+	ABuilding[3].translate = Vector3(30, 5, 0);
+
+	meshList[GEO_SPIKE] = MeshBuilder::GenerateOBJ("spike", "OBJ//spike.obj");
+	meshList[GEO_SPIKE]->textureID = LoadTGA("Image//spike.tga");
+	meshList[GEO_SPIKE]->material.kAmbient.Set(0.7f, 0.7f, 0.7f);
+	meshList[GEO_SPIKE]->material.kDiffuse.Set(1.f, 1.f, 1.f);
+	meshList[GEO_SPIKE]->material.kSpecular.Set(1.f, 1.f, 1.f);
+	meshList[GEO_SPIKE]->material.kShininess = 1.f;
+	ASpike.translate = Vector3(0, 5, 10);
+
+	meshList[GEO_COIN] = MeshBuilder::GenerateOBJ("coin", "OBJ//coin.obj");
+	meshList[GEO_COIN]->textureID = LoadTGA("Image//coin.tga");
+	meshList[GEO_COIN]->material.kAmbient.Set(0.7f, 0.7f, 0.7f);
+	meshList[GEO_COIN]->material.kDiffuse.Set(1.f, 1.f, 1.f);
+	meshList[GEO_COIN]->material.kSpecular.Set(1.f, 1.f, 1.f);
+	meshList[GEO_COIN]->material.kShininess = 1.f;
+	ACoin.translate = Vector3(10, 5, 10);
+
+	meshList[GEO_BOX] = MeshBuilder::GenerateOBJ("box", "OBJ//box.obj");
+	meshList[GEO_BOX]->textureID = LoadTGA("Image//box.tga");
+	meshList[GEO_BOX]->material.kAmbient.Set(0.7f, 0.7f, 0.7f);
+	meshList[GEO_BOX]->material.kDiffuse.Set(1.f, 1.f, 1.f);
+	meshList[GEO_BOX]->material.kSpecular.Set(1.f, 1.f, 1.f);
+	meshList[GEO_BOX]->material.kShininess = 1.f;
+	ABox[0].translate = Vector3(-115, 5, 125);
+	ABox[1].translate = Vector3(-115, 5, 110);
+	ABox[2].translate = Vector3(-115, 5, 95);
+	ABox[3].translate = Vector3(-115, 5, 70);
+	ABox[4].translate = Vector3(-115, 5, 55);
+	ABox[5].translate = Vector3(-115, 5, 40);
+	ABox[6].translate = Vector3(-115, 5, 25);
+
+
+	meshList[GEO_BOOSTPAD] = MeshBuilder::GenerateOBJ("boost", "OBJ//boostpad.obj");
+	meshList[GEO_BOOSTPAD]->textureID = LoadTGA("Image//boostpad.tga");
+	meshList[GEO_BOOSTPAD]->material.kAmbient.Set(0.7f, 0.7f, 0.7f);
+	meshList[GEO_BOOSTPAD]->material.kDiffuse.Set(1.f, 1.f, 1.f);
+	meshList[GEO_BOOSTPAD]->material.kSpecular.Set(1.f, 1.f, 1.f);
+	meshList[GEO_BOOSTPAD]->material.kShininess = 1.f;
+	ABoostpad.translate = Vector3(30, 5, 10);
+
+	// Door
+	meshList[GEO_DOOR] = MeshBuilder::GenerateOBJ("door", "OBJ//door.obj");
+	meshList[GEO_DOOR]->textureID = LoadTGA("Image//door.tga");
+	meshList[GEO_DOOR]->material.kAmbient.Set(0.7f, 0.7f, 0.7f);
+	meshList[GEO_DOOR]->material.kDiffuse.Set(1.f, 1.f, 1.f);
+	meshList[GEO_DOOR]->material.kSpecular.Set(1.f, 1.f, 1.f);
+	meshList[GEO_DOOR]->material.kShininess = 1.f;
+	Door.translate = Vector3(-147, 4, 130);
+	Door.RotateY.degree += 90;
+	Door.Scale = Vector3(1.5, 1.5, 1.5);
+
+	meshList[GEO_DOORSCREEN] = MeshBuilder::GenerateQuad("doorscreen", Color(0, 0, 0), 8, 9);
+	meshList[GEO_DOORSCREEN]->textureID = LoadTGA("Image//doorscreen.tga");
+	meshList[GEO_DOORSCREEN]->material.kAmbient.Set(0.7f, 0.7f, 0.7f);
+	meshList[GEO_DOORSCREEN]->material.kDiffuse.Set(1.f, 1.f, 1.f);
+	meshList[GEO_DOORSCREEN]->material.kSpecular.Set(1.f, 1.f, 1.f);
+	meshList[GEO_DOORSCREEN]->material.kShininess = 1.f;
+	DoorScreen.translate = Vector3(0, -0.2, 2);
+	DoorScreen.Scale = Vector3(1, 1, 1);
 
 	carVelocity = 0.f;
 	carTurningSpeed = 135.f;
 	carAcceleration = 10.f;
 	friction = 8.f;
 
-	//camera.Init(Vector3(ACarBody.translate.x, ACarBody.translate.y + 5, ACarBody.translate.z + 5), Vector3(0, ACarBody.translate.y + 5, 0), Vector3(0, 1, 0));
-	camera.Init(Vector3(0, 20, 10), Vector3(0, 20, 0), Vector3(0, 1, 0));
+	camera.Init(ACarBody.translate + Vector3(0, 5, 30), ACarBody.translate + Vector3(0, 5, 0), Vector3(0, 1, 0));
+	//camera.Init(Vector3(0, 20, 10), Vector3(0, 20, 0), Vector3(0, 1, 0));
 
 	//firstpersoncamera.Init(Vector3(Aplayer.translate.x, Aplayer.translate.y + 6.1, Aplayer.translate.z), Vector3(0, Aplayer.translate.y + 6.1, 0), Vector3(0, 1, 0));
 
@@ -274,6 +372,7 @@ void DriveScene::Update(double dt)
 {
 	const float playerMovementSpeed = 10.f;
 	const float playerTurningSpeed = 135.f;
+
 	if (Application::IsKeyPressed(0x31))
 	{
 		glDisable(GL_CULL_FACE);
@@ -289,24 +388,6 @@ void DriveScene::Update(double dt)
 	else if (Application::IsKeyPressed(0x34))
 	{
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	}
-	else if (Application::IsKeyPressed('I')) {
-		light[0].position.y += (float)(50 * dt);
-	}
-	else if (Application::IsKeyPressed('K')) {
-		light[0].position.y -= (float)(50 * dt);
-	}
-	else if (Application::IsKeyPressed('J')) {
-		light[0].position.x -= (float)(50 * dt);
-	}
-	else if (Application::IsKeyPressed('L')) {
-		light[0].position.x += (float)(50 * dt);
-	}
-	else if (Application::IsKeyPressed('O')) {
-		light[0].position.z += (float)(50 * dt);
-	}
-	else if (Application::IsKeyPressed('P')) {
-		light[0].position.y -= (float)(50 * dt);
 	}
 
 	//UI Text (for movement) logic
@@ -336,19 +417,43 @@ void DriveScene::Update(double dt)
 	}
 
 	// Increase Car Velocity to move forward
-	if (Application::IsKeyPressed('W')) {
-		carVelocity += (carAcceleration * dt);
+	if (Application::IsKeyPressed('W'))
+	{
+		if (carVelocity < 0)
+		{
+			carVelocity += (1.5 * ((carAcceleration * dt) + (friction * dt)));
+		}
+		else
+		{
+			if (carVelocity < 60)
+			{
+				carVelocity += (carAcceleration * dt);
+			}
+		}
 	}
 	// Decrease Car Velocity to move backwards
-	if (Application::IsKeyPressed('S')) {
-		carVelocity -= ((carAcceleration)*dt);
+	if (Application::IsKeyPressed('S'))
+	{
+		if (carVelocity > 0)
+		{
+			carVelocity -= (1.5 * ((carAcceleration * dt) + (friction * dt)));
+		}
+		else
+		{
+			if (carVelocity > -60)
+			{
+				carVelocity -= (carAcceleration * dt);
+			}
+		}
 	}
 	// Turn car to the left
-	if (carVelocity != 0.f && Application::IsKeyPressed('A')) {
+	if (carVelocity != 0.f && Application::IsKeyPressed('A'))
+	{
 		ACarBody.RotateY.degree += (float)(carTurningSpeed * dt);
 	}
 	// Turn car to the right
-	if (carVelocity != 0.f && Application::IsKeyPressed('D')) {
+	if (carVelocity != 0.f && Application::IsKeyPressed('D'))
+	{
 		ACarBody.RotateY.degree -= (float)(carTurningSpeed * dt);
 	}
 
@@ -357,7 +462,7 @@ void DriveScene::Update(double dt)
 	{
 		if (carVelocity < 0.f)
 		{
-			carVelocity += (friction * dt);
+			carVelocity += (2 * (friction * dt));
 			if (carVelocity > 0.f)
 			{
 				carVelocity = 0.f;
@@ -365,24 +470,22 @@ void DriveScene::Update(double dt)
 		}
 		else if (carVelocity > 0.f)
 		{
-			carVelocity -= (friction * dt);
+			carVelocity -= (2 * (friction * dt));
 			if (carVelocity < 0.f)
 			{
 				carVelocity = 0.f;
 			}
 		}
 	}
-
 	//Car Moving
 	ACarBody.translate.z -= cos(Math::DegreeToRadian(ACarBody.RotateY.degree)) * (float)(carVelocity * dt);
 	ACarBody.translate.x -= sin(Math::DegreeToRadian(ACarBody.RotateY.degree)) * (float)(carVelocity * dt);
 
 
-	camera.Update(dt, Aplayer);
+	camera.CarUpdate(dt, ACarBody);
 	//firstpersoncamera.Update(dt, Aplayer);
 
 }
-
 
 void DriveScene::Render()
 {
@@ -453,14 +556,45 @@ void DriveScene::Render()
 
 	//RenderObj(meshList[GEO_DICE], Aplayer, true, false);
 
-	RenderObj(meshList[GEO_TRACK], track, true, true);
-
-	RenderObj(meshList[GEO_CAR1BODY], ACarBody, false, false);
+	RenderObj(meshList[GEO_CARBODY], ACarBody, false, false);
 	for (int carnumwheel = 0; carnumwheel < 4; carnumwheel++)
 	{
-		RenderObj(meshList[GEO_CAR1WHEEL], ACarWheel[carnumwheel], true, false);
+		RenderObj(meshList[GEO_CARWHEEL], ACarWheel[carnumwheel], true, false);
 	}
 	modelStack.PopMatrix();
+
+	//for (int i = 0; i < 4; i++)
+	//{
+	//	if (i == 0)
+	//	{
+	//		RenderObj(meshList[GEO_BUILDING1], ABuilding[i], true, false);
+	//	}
+	//	else if (i == 1)
+	//	{
+	//		RenderObj(meshList[GEO_BUILDING2], ABuilding[i], true, false);
+	//	}
+	//	else if (i == 2)
+	//	{
+	//		RenderObj(meshList[GEO_BUILDING3], ABuilding[i], true, false);
+	//	}
+	//	else if (i == 3)
+	//	{
+	//		RenderObj(meshList[GEO_BUILDING4], ABuilding[i], true, false);
+	//	}
+	//}
+
+	RenderObj(meshList[GEO_SPIKE], ASpike, true, false);
+	RenderObj(meshList[GEO_COIN], ACoin, true, false);
+	for (int i = 0; i < 7; i++)
+	{
+		RenderObj(meshList[GEO_BOX], ABox[i], true, false);
+	}
+	RenderObj(meshList[GEO_BOOSTPAD], ABoostpad, true, false);
+
+	RenderObj(meshList[GEO_DOOR], Door, false, false);
+	RenderObj(meshList[GEO_DOORSCREEN], DoorScreen, true, false);
+	modelStack.PopMatrix();
+
 }
 
 void DriveScene::Exit()
@@ -522,22 +656,22 @@ void DriveScene::RenderSkybox()
 {
 	modelStack.PushMatrix();
 	///scale, translate, rotate 
-	modelStack.Translate(-50.f, 0.f, 0.f);
-	modelStack.Scale(103.f, 103.f, 103.f);
+	modelStack.Translate(-150.f, 50.f, 0.f);
+	modelStack.Scale(303.f, 303.f, 303.f);
 	modelStack.Rotate(90.f, 0.f, 1.f, 0.f);
 	RenderMesh(meshList[GEO_LEFT], false);
 	modelStack.PopMatrix();
 	modelStack.PushMatrix();
 	///scale, translate, rotate 
-	modelStack.Translate(50.f, 0.f, 0.f);
-	modelStack.Scale(103.f, 103.f, 103.f);
+	modelStack.Translate(150.f, 50.f, 0.f);
+	modelStack.Scale(303.f, 303.f, 303.f);
 	modelStack.Rotate(-90.f, 0.f, 1.f, 0.f);
 	RenderMesh(meshList[GEO_RIGHT], false);
 	modelStack.PopMatrix();
 	modelStack.PushMatrix();
 	///scale, translate, rotate 
-	modelStack.Translate(0.f, 50.f, 1.f);
-	modelStack.Scale(103.f, 103.f, 103.f);
+	modelStack.Translate(0.f, 150.f, 1.f);
+	modelStack.Scale(303.f, 303.f, 303.f);
 	modelStack.Rotate(90.f, 1.f, 0.f, 0.f);
 	modelStack.Rotate(0.f, 0.f, 0.f, 1.f);
 	RenderMesh(meshList[GEO_TOP], false);
@@ -545,21 +679,21 @@ void DriveScene::RenderSkybox()
 	modelStack.PushMatrix();
 	///scale, translate, rotate 
 	modelStack.Translate(0.f, -50.f, 0.f);
-	modelStack.Scale(103.f, 103.f, 103.f);
+	modelStack.Scale(303.f, 303.f, 303.f);
 	modelStack.Rotate(-90.f, 1.f, 0.f, 0.f);
 	modelStack.Rotate(90.f, 0.f, 0.f, 1.f);
 	RenderMesh(meshList[GEO_BOTTOM], false);
 	modelStack.PopMatrix();
 	modelStack.PushMatrix();
 	///scale, translate, rotate 
-	modelStack.Translate(0.f, 0.f, -50.f);
-	modelStack.Scale(103.f, 103.f, 103.f);
+	modelStack.Translate(0.f, 50.f, -150.f);
+	modelStack.Scale(303.f, 303.f, 303.f);
 	RenderMesh(meshList[GEO_FRONT], false);
 	modelStack.PopMatrix();
 	modelStack.PushMatrix();
 	///scale, translate, rotate 
-	modelStack.Translate(0.f, 0.f, 50.f);
-	modelStack.Scale(103.f, 103.f, 103.f);
+	modelStack.Translate(0.f, 50.f, 150.f);
+	modelStack.Scale(303.f, 303.f, 303.f);
 	modelStack.Rotate(180.f, 0.f, 1.f, 0.f);
 	RenderMesh(meshList[GEO_BACK], false);
 	modelStack.PopMatrix();
