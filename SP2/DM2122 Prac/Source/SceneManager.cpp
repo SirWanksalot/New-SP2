@@ -1,5 +1,7 @@
 #include "SceneManager.h"
 SceneManager* SceneManager::instance = 0;
+SceneManager::SceneNames SceneManager::currSceneID = SceneManager::S_SHOWROOMSCENE;
+
 SceneManager::SceneManager() {
 
 }
@@ -18,13 +20,6 @@ SceneManager* SceneManager::getInstance() {
 	}
 }
 
-void SceneManager::AddScene(Scene* scene) {
-	Scenes.push_back (scene);
-}
-
-void SceneManager::SetNextScene(int sceneID) {
-
-}
 Scene* SceneManager::getCurrScene() {
 	return Scenes[currSceneID];
 }
@@ -34,10 +29,10 @@ void SceneManager::Update(double ElapsedTime) {
 	Scenes[currSceneID]->Render();
 }
 
-int SceneManager::getCurrSceneID() {
+SceneManager::SceneNames SceneManager::getCurrSceneID() {
 	return currSceneID;
 }
 
-void SceneManager::setCurrSceneID(int ID) {
+void SceneManager::setCurrSceneID(SceneNames ID) {
 	currSceneID = ID;
 }

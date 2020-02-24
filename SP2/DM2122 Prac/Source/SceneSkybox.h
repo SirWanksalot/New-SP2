@@ -176,13 +176,15 @@ private:
 
 	//cars
 	TRS Platform[4];
+	float PlatformR;
 	TRS Cars[4];
-	cornercoord CCar[4];
 	TRS CarWheel[4][4];
 
 	//door 
 	TRS Door;
+	TRS DoorCheck;
 	TRS DoorScreen;
+	cornercoord CdoorScreen;
 
 	//slot machine
 	TRS Aslot_body;

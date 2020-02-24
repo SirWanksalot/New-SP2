@@ -7,6 +7,7 @@
 #include "Utility.h"
 #include "LoadTGA.h"
 #include <string>
+#include "SceneManager.h"
 
 #define ROT_LIMIT 45.f;
 #define SCALE_LIMIT 5.f;

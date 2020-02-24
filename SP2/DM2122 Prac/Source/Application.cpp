@@ -108,22 +108,20 @@ void Application::Run()
 	SceneManager* thisScene = SceneManager::getInstance();
 	
 	
-	thisScene->AddScene(new SceneSkybox);
-	thisScene->AddScene(new DriveScene);
+	thisScene->Scenes[SceneManager::S_SHOWROOMSCENE] = new SceneSkybox;
+	thisScene->Scenes[SceneManager::S_DRIVESCENE] = new DriveScene;
+
 	
 	//Main Loop
 	//Scene* scene = new SceneSkybox();
-
-	thisScene->getCurrScene()->Init();
+	for (int i = 0; i < SceneManager::S_TOTAL; ++i) {
+		thisScene->Scenes[i]->Init();
+	}
 
 	m_timer.startTimer();    // Start timer to calculate how long it takes to render this frame
 	while (!glfwWindowShouldClose(m_window) && !IsKeyPressed(VK_ESCAPE))
 	{
 		//put condition here
-		if (IsKeyPressed(VK_NUMPAD1)) {
-			thisScene->setCurrSceneID(thisScene->getCurrSceneID() + 1);
-			thisScene->getCurrScene()->Init();
-		}
 		thisScene->Update(m_timer.getElapsedTime());
 		//Swap buffers
 		glfwSwapBuffers(m_window);
