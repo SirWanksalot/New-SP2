@@ -319,13 +319,26 @@ void DriveScene::Init()
 	meshList[GEO_BOX]->material.kDiffuse.Set(1.f, 1.f, 1.f);
 	meshList[GEO_BOX]->material.kSpecular.Set(1.f, 1.f, 1.f);
 	meshList[GEO_BOX]->material.kShininess = 1.f;
-	ABox[0].translate = Vector3(-115, 5, 125);
-	ABox[1].translate = Vector3(-115, 5, 110);
-	ABox[2].translate = Vector3(-115, 5, 95);
-	ABox[3].translate = Vector3(-115, 5, 70);
-	ABox[4].translate = Vector3(-115, 5, 55);
-	ABox[5].translate = Vector3(-115, 5, 40);
-	ABox[6].translate = Vector3(-115, 5, 25);
+	boxlist.addItem(Vector3(-115, 5, 130));
+	boxlist.addItem(Vector3(-115, 5, 120));
+	boxlist.addItem(Vector3(-115, 5, 110));
+	boxlist.addItem(Vector3(-115, 5, 80));
+	boxlist.addItem(Vector3(-115, 5, 70));
+	boxlist.addItem(Vector3(-115, 5, 60));
+	boxlist.addItem(Vector3(-115, 5, 50));
+	boxlist.addItem(Vector3(-115, 5, 40));
+	boxlist.addItem(Vector3(-115, 5, 30));
+	boxlist.addItem(Vector3(-115, 5, 0));
+	boxlist.addItem(Vector3(-115, 5, -10));
+	boxlist.addItem(Vector3(-115, 5, -20));
+	boxlist.addItem(Vector3(-115, 5, -30));
+	boxlist.addItem(Vector3(-115, 5, -40));
+	boxlist.addItem(Vector3(-115, 5, -70));
+	boxlist.addItem(Vector3(-115, 5, -80));
+	boxlist.addItem(Vector3(-115, 5, -90));
+
+
+
 
 
 	meshList[GEO_BOOSTPAD] = MeshBuilder::GenerateOBJ("boost", "OBJ//boostpad.obj");
@@ -585,10 +598,15 @@ void DriveScene::Render()
 
 	RenderObj(meshList[GEO_SPIKE], ASpike, true, false);
 	RenderObj(meshList[GEO_COIN], ACoin, true, false);
-	for (int i = 0; i < 7; i++)
+	//for (int i = 0; i < 7; i++)
+	//{
+	//	RenderObj(meshList[GEO_BOX], ABox[i], true, false);
+	//}
+	for (CNode* current = boxlist.gethead(); current != nullptr; current = current->getnext()) 
 	{
-		RenderObj(meshList[GEO_BOX], ABox[i], true, false);
+		RenderObj(meshList[GEO_BOX], current->transformation, true, false);
 	}
+
 	RenderObj(meshList[GEO_BOOSTPAD], ABoostpad, true, false);
 
 	RenderObj(meshList[GEO_DOOR], Door, false, false);

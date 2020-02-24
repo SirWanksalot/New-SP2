@@ -9,6 +9,7 @@
 #include "Light.h"
 #include "Loadcornercoord.h"
 #include "Collision_detector.h"
+#include "CItemList.h"
 
 struct CarStats
 {
