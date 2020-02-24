@@ -6,7 +6,7 @@
 #include "Camera2.h"
 #include "Mesh.h"
 #include "Light.h"
-
+#include "CItemList.h"
 
 class DriveScene : public Scene
 {
@@ -100,6 +100,8 @@ private:
 
 	Camera2 camera;
 	Camera2 firstpersoncamera;
+
+	CItemList boxlist;
 
 	int fps;
 	float framespersecond;
