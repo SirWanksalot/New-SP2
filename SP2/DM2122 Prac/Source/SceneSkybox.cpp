@@ -771,7 +771,7 @@ void SceneSkybox::Render()
 
 	
 
-	if ((Aplayer.translate - Platform[0].translate).Length() < 13 || (Aplayer.translate - Platform[1].translate).Length() < 13 || (Aplayer.translate - Platform[2].translate).Length() < 13 || (Aplayer.translate - Platform[3].translate).Length() < 13)
+	if ((Aplayer.translate - Platform[0].translate).Length() < 15 || (Aplayer.translate - Platform[1].translate).Length() < 15 || (Aplayer.translate - Platform[2].translate).Length() < 15 || (Aplayer.translate - Platform[3].translate).Length() < 15)
 	{
 		RenderTextOnScreen(meshList[GEO_TEXT], "N and M to rotate platform", Color(0, 1, 0), 2, 0, 4); // Rotate Text
 	}
@@ -1133,7 +1133,7 @@ void SceneSkybox::RenderStats(bool renderUpgrade, HologramUI UI)
 bool SceneSkybox::DistanceCheck(Vector3 Object1, Vector3 Object2) //true: if they are close enough
 {
 	Vector3 Distance = Object1 - Object2;
-	if (Distance.Length() <= 10.f) return true;
+	if (Distance.Length() <= 15.f) return true;
 	else return false;
 }
 

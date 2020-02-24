@@ -27,26 +27,18 @@ class DriveScene : public Scene
 		GEO_SHOP,
 		GEO_SHOP_UI,
 		GEO_SHOP_NPC,
-		//	GEO_CAR_BOOST,
-		GEO_CAR1BODY,
-		GEO_CAR2BODY,
-		GEO_CAR3BODY,
-		GEO_CAR4BODY,
-		GEO_CAR1WHEEL,
-		GEO_CAR2WHEEL,
-		GEO_CAR3WHEEL,
-		GEO_CAR4WHEEL,
-		GEO_PLATFORM,
-		GEO_SLOT_BODY,
-		GEO_SLOT_ARM,
-		GEO_SLOT_SCREEN_IMAGE,
+		GEO_CARBODY,
+		GEO_CARWHEEL,
+		GEO_BUILDING1,
+		GEO_BUILDING2,
+		GEO_BUILDING3,
+		GEO_BUILDING4,
+		GEO_COIN,
+		GEO_BOOSTPAD,
+		GEO_SPIKE,
+		GEO_BOX,
 		GEO_DOOR,
 		GEO_DOORSCREEN,
-		GEO_HOLO0,
-		GEO_HOLO1,
-		GEO_HOLO2,
-		GEO_HOLO3,
-		GEO_TRACK,
 		NUM_GEOMETRY,
 	};
 
@@ -119,10 +111,21 @@ private:
 	float carAcceleration;
 	float friction;
 
+	int Acarnumber;
+
 	const float playerMovementSpeed = 10.f;
 	const float playerTurningSpeed = 135.f;
 
-	TRS track;
+	//buildings
+	TRS ABuilding[4];
+	TRS ASpike;
+	TRS ACoin;
+	TRS ABox[40];
+	TRS ABoostpad;
+
+	//door 
+	TRS Door;
+	TRS DoorScreen;
 
 	//characters
 	TRS Aplayer;
