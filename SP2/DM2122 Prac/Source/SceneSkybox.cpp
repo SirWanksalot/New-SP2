@@ -8,6 +8,7 @@
 #include "LoadTGA.h"
 #include "Collision_detector.h"
 #include <string>
+#include "SceneManager.h"
 
 #define ROT_LIMIT 45.f;
 #define SCALE_LIMIT 5.f;
@@ -214,6 +215,7 @@ void SceneSkybox::Init()
 	Platform[1].Scale = Vector3(1.2, 1.2, 1.2);
 	Platform[2].Scale = Vector3(1.2, 1.2, 1.2);
 	Platform[3].Scale = Vector3(1.2, 1.2, 1.2);
+	Loadcoord("OBJ//Platform.obj", PlatformR);
 
 	// Car 1
 	meshList[GEO_CAR1BODY] = MeshBuilder::GenerateOBJ("Car1", "OBJ//GuangThengCarBody.obj");
@@ -224,7 +226,6 @@ void SceneSkybox::Init()
 	meshList[GEO_CAR1BODY]->material.kShininess = 1.f;
 	Cars[0].translate = Vector3(0, 2.05, 0);
 	Cars[0].Scale = Vector3(1.55, 1.55, 1.55);
-	Loadcoord("OBJ//GuangThengCarBody.obj", CCar[0]);
 
 	meshList[GEO_CAR1WHEEL] = MeshBuilder::GenerateOBJ("Car1Wheel", "OBJ//GuangThengCarWheel.obj");
 	meshList[GEO_CAR1WHEEL]->textureID = LoadTGA("Image//GuangThengCarTex.tga");
@@ -248,7 +249,6 @@ void SceneSkybox::Init()
 	meshList[GEO_CAR2BODY]->material.kShininess = 1.f;
 	Cars[1].translate = Vector3(0, 3.2, 0);
 	Cars[1].Scale = Vector3(2, 2, 2);
-	Loadcoord("OBJ//RyanCarBody.obj", CCar[1]);
 
 	meshList[GEO_CAR2WHEEL] = MeshBuilder::GenerateOBJ("Car2Wheel", "OBJ//RyanCarWheel.obj");
 	meshList[GEO_CAR2WHEEL]->textureID = LoadTGA("Image//RyanCarWheelTex.tga");
@@ -270,7 +270,6 @@ void SceneSkybox::Init()
 	meshList[GEO_CAR3BODY]->material.kShininess = 1.f;
 	Cars[2].translate = Vector3(0, 3, 0);
 	Cars[2].Scale = Vector3(2, 2, 2);
-	Loadcoord("OBJ//JCCarBody.obj", CCar[2]);
 
 	meshList[GEO_CAR3WHEEL] = MeshBuilder::GenerateOBJ("Car3Wheel", "OBJ//JCCarWheel.obj");
 	meshList[GEO_CAR3WHEEL]->textureID = LoadTGA("Image//JCCarTex.tga");
@@ -292,7 +291,6 @@ void SceneSkybox::Init()
 	meshList[GEO_CAR4BODY]->material.kShininess = 1.f;
 	Cars[3].translate = Vector3(0, 4.7, 0);
 	Cars[3].Scale = Vector3(1.7, 1.7, 1.7);
-	Loadcoord("OBJ//JianFengCarBody.obj", CCar[3]);
 
 	meshList[GEO_CAR4WHEEL] = MeshBuilder::GenerateOBJ("Car4Wheel", "OBJ//JianFengCarWheel.obj");
 	meshList[GEO_CAR4WHEEL]->textureID = LoadTGA("Image//JianFengCarTex.tga");
@@ -318,6 +316,7 @@ void SceneSkybox::Init()
 	Door.RotateY.degree += 270;
 	Door.Scale = Vector3(1.5, 1.5, 1.5);
 
+
 	meshList[GEO_DOORSCREEN] = MeshBuilder::GenerateQuad("doorscreen", Color(0, 0, 0), 8, 9);
 	meshList[GEO_DOORSCREEN]->textureID = LoadTGA("Image//doorscreen.tga");
 	meshList[GEO_DOORSCREEN]->material.kAmbient.Set(0.7f, 0.7f, 0.7f);
@@ -325,7 +324,9 @@ void SceneSkybox::Init()
 	meshList[GEO_DOORSCREEN]->material.kSpecular.Set(1.f, 1.f, 1.f);
 	meshList[GEO_DOORSCREEN]->material.kShininess = 1.f;
 	DoorScreen.translate = Vector3(0, -0.2, 2);
-	DoorScreen.Scale = Vector3(1, 1, 1);
+	DoorScreen.Scale = Vector3(1, 1, 1);	
+	Loadcoord("OBJ//doorscreen.obj", CdoorScreen);
+	DoorCheck = Door + DoorScreen;
 
 
 	meshList[GEO_SLOT_BODY] = MeshBuilder::GenerateOBJ("slot body", "obj//slots_body.obj");
@@ -408,7 +409,6 @@ void SceneSkybox::Init()
 
 	camera.Init(Aplayer.translate + Vector3(0, 8, 15), Vector3(Aplayer.translate) + Vector3(0, 5, 0), Vector3(0, 1, 0));
 	firstpersoncamera.Init(Vector3(Aplayer.translate.x, Aplayer.translate.y + 6.1, Aplayer.translate.z), Vector3(0, Aplayer.translate.y + 6.1, 0), Vector3(0, 1, 0));
-
 }
 
 void SceneSkybox::Update(double dt)
@@ -516,8 +516,6 @@ void SceneSkybox::Update(double dt)
 	else UIText[2] = "(Press Tab to change) Current Camera: 3rd Person";
 
 	//Shop UI 
-
-	//Shop UI 
 	UpdateHologram(ShopUI, car_Stats, Shop, 15.f);
 
 	for (int i = 0; i < 4; ++i)
@@ -525,7 +523,6 @@ void SceneSkybox::Update(double dt)
 		UpdateHologram(CarHologram[i], car_Stats, Platform[i], 5.f);
 	}
 
-	// Rotate platform
 	// Rotate platform
 	if (Application::IsKeyPressed('N'))
 	{
@@ -598,6 +595,11 @@ void SceneSkybox::Update(double dt)
 		if (stop_machine > 2) {
 			activate_slot_machine = 0;
 		}
+	}
+
+	//change Scene
+	if (collision_detector(DoorCheck, CdoorScreen, Aplayer, Cplayer)) {
+		SceneManager::currSceneID = SceneManager::S_DRIVESCENE;
 	}
 
 	camera.Update(dt, Aplayer);
@@ -980,7 +982,7 @@ void SceneSkybox::PlayerMoveUp(double dt)
 	} 
 	for (int i = 0; i < 4; i++)
 	{
-		if (collision_detector(Aplayer, Cplayer, Platform[i], CCar[i]))
+		if (collision_detector(Aplayer, Cplayer, Platform[i], PlatformR))
 		{
 			Aplayer.translate.z -= cos(Math::DegreeToRadian(Aplayer.RotateY.degree)) * (float)(playerMovementSpeed * dt);
 			Aplayer.translate.x -= sin(Math::DegreeToRadian(Aplayer.RotateY.degree)) * (float)(playerMovementSpeed * dt);
@@ -998,7 +1000,7 @@ void SceneSkybox::PlayerMoveDown(double dt)
 	}
 	for (int i = 0; i < 4; i++)
 	{
-		if (collision_detector(Aplayer, Cplayer, Platform[i], CCar[i]))
+		if (collision_detector(Aplayer, Cplayer, Platform[i], PlatformR))
 		{
 			Aplayer.translate.z += cos(Math::DegreeToRadian(Aplayer.RotateY.degree)) * (float)(playerMovementSpeed * dt);
 			Aplayer.translate.x += sin(Math::DegreeToRadian(Aplayer.RotateY.degree)) * (float)(playerMovementSpeed * dt);
@@ -1017,7 +1019,7 @@ void SceneSkybox::PlayerMoveRight(double dt)
 	}
 	for (int i = 0; i < 4; i++)
 	{
-		if (collision_detector(Aplayer, Cplayer, Platform[i], CCar[i]))
+		if (collision_detector(Aplayer, Cplayer, Platform[i], PlatformR))
 		{
 			Aplayer.translate.z -= sin(Math::DegreeToRadian(Aplayer.RotateY.degree)) * (float)(playerMovementSpeed * dt);
 			Aplayer.translate.x += cos(Math::DegreeToRadian(Aplayer.RotateY.degree)) * (float)(playerMovementSpeed * dt);
@@ -1035,7 +1037,7 @@ void SceneSkybox::PlayerMoveLeft(double dt)
 	}
 	for (int i = 0; i < 4; i++)
 	{
-		if (collision_detector(Aplayer, Cplayer, Platform[i], CCar[i]))
+		if (collision_detector(Aplayer, Cplayer, Platform[i], PlatformR))
 		{
 			Aplayer.translate.z += sin(Math::DegreeToRadian(Aplayer.RotateY.degree)) * (float)(playerMovementSpeed * dt);
 			Aplayer.translate.x -= cos(Math::DegreeToRadian(Aplayer.RotateY.degree)) * (float)(playerMovementSpeed * dt);

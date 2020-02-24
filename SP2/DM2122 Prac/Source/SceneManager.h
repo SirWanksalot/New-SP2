@@ -5,21 +5,22 @@
 class SceneManager
 {
 private:
-	std::vector<Scene*> Scenes;
-	int currSceneID = 0;
 	//int nextSceneID = 0;
 	static SceneManager* instance;
-
 public:
-
+	enum SceneNames {
+		S_SHOWROOMSCENE = 0,
+		S_DRIVESCENE,
+		S_TOTAL
+	};
 	SceneManager();
 	~SceneManager();
+	static SceneNames currSceneID;
+	Scene* Scenes[S_TOTAL];
 	static SceneManager* getInstance();
-	void AddScene(Scene* scene);
-	void SetNextScene(int sceneID);
 	Scene* getCurrScene();
 	void Update(double ElapsedTime);
-	int getCurrSceneID();
-	void setCurrSceneID(int ID);
+	SceneNames getCurrSceneID();
+	void setCurrSceneID(SceneNames ID);
 };
 
