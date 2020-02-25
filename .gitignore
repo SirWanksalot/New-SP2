@@ -1,0 +1,25 @@
+SP2/Common/Debug/Common.idb
+SP2/Common/Debug/Common.log
+SP2/Common/Debug/Common.pdb
+SP2/Common/Debug/Common.tlog/CL.command.1.tlog
+SP2/Common/Debug/Common.tlog/CL.read.1.tlog
+SP2/Common/Debug/Common.tlog/CL.write.1.tlog
+SP2/Common/Debug/Common.tlog/Common.lastbuildstate
+SP2/Common/Debug/Common.tlog/Lib-link.read.1.tlog
+SP2/Common/Debug/Common.tlog/Lib-link.write.1.tlog
+SP2/Common/Debug/Common.tlog/Lib.command.1.tlog
+SP2/Common/Debug/MatrixStack.obj
+SP2/Common/Debug/Mtx44.obj
+SP2/Common/Debug/TRS.obj
+SP2/Common/Debug/Vector3.obj
+SP2/Common/Debug/timer.obj
+SP2/DM2122 Prac/DM2122 Prac.vcxproj
+SP2/DM2122 Prac/DM2122 Prac.vcxproj.filters
+SP2/DM2122 Prac/Debug/Application.obj
+SP2/DM2122 Prac/Debug/Camera.obj
+SP2/DM2122 Prac/Debug/Camera2.obj
+SP2/DM2122 Prac/Debug/Collision_detector.obj
+SP2/DM2122 Prac/Debug/DM2122 Prac.log
+SP2/DM2122 Prac/Debug/DM2122 Prac.tlog/CL.command.1.tlog
+SP2/DM2122 Prac/Debug/DM2122 Prac.tlog/CL.read.1.tlog
+SP2/DM2122 Prac/Debug/DM2122 Prac.tlog/CL.write.1.tlog
