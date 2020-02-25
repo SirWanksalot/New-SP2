@@ -10,40 +10,9 @@
 #include "Loadcornercoord.h"
 #include "Collision_detector.h"
 #include "CItemList.h"
-
-struct CarStats
-{
-
-	float StatLevel[6]; //save for logic later
-	TRS StatTRS[6]; //save for logic later
-
-	CarStats() //set default to 1
-	{
-		for (int i = 0; i < 6; ++i)
-		{
-			StatLevel[i] = 1.f;
-			StatTRS[i].Scale = Vector3(0.f, 1.f, 1.f);
-		}
-	}
-
-	CarStats(float speed, float turbo, float fuel, float speedupgrade, float turboupgrade, float fuelupgrade)
-	{
-		StatLevel[0] = speed; StatLevel[1] = turbo; StatLevel[2] = fuel;
-		StatLevel[3] = speedupgrade; StatLevel[4] = turboupgrade; StatLevel[5] = fuelupgrade;
-
-		for (int i = 0; i < 6; ++i) {
-			StatTRS[i].Scale = Vector3(0.f, 1.f, 1.f);
-		}
-	}
-};
-
-struct HologramUI
-{
-	TRS UI;
-	float lengthX, lengthY;
-
-	HologramUI() { UI.Scale = Vector3(0.f, 1.f, 1.f); }
-};
+#include "CarStats.h"
+#include "HologramUI.h"
+#include "HologramCamera.h"
 
 class SceneSkybox : public Scene
 {
@@ -145,6 +114,7 @@ private:
 
 	Camera2 camera;
 	FirstPersonCamera firstpersoncamera;
+	HologramCamera hologramcamera;
 
 
 	int fps;
@@ -163,15 +133,18 @@ private:
 	//shop
 	TRS Shop;
 	HologramUI ShopUI;
-	CarStats car_Stats;
+	CarStats car_Details;
+	CarStats car_Stats[4];
+	int ShopUI_Scroll;
 
 	std::string UIText[3];
 	//UIText[0] - Movement text
 	//UIText[1] - Camera movement text
 	//UIText[2] - Camera Toggle (between 1st and 3rd)
 
+	int CameraSwitch;
 	bool CameraToggle;
-	//Toggle between first and third person cam, false = 1st, true = 3rd
+	bool hologramcamera_leave;	//Toggle between first and third person cam, false = 1st, true = 3rd
 	double BounceTime;
 	//For camera to toggle without immediately switching back
 
@@ -208,6 +181,7 @@ private:
 
 	TRS Holo[4];
 	HologramUI CarHologram[4];
+	int currency;
 
 	void RenderMesh(Mesh* mesh, bool enableLight);
 	void RenderSkybox();
@@ -215,7 +189,8 @@ private:
 	void RenderTextOnScreen(Mesh* mesh,std::string text, Color color,float size,float x, float y);
 	void RenderObj(Mesh* mesh, TRS& trs, bool end , bool enableLight);
 	bool DistanceCheck(Vector3 Object1, Vector3 Object2);
-	void RenderStats(bool renderUpgrade, HologramUI UI);
+	void RenderStats(HologramUI UI, CarStats& car_Stats);
+	void RenderShopStats(CarStats& car_Stats);	
 	void RenderSlotImage(Mesh* mesh, TRS& trs, int image);
 	void UpdateHologram(HologramUI& UI, CarStats& car_Stats, TRS ObjectDisplay, float targetY);
 
