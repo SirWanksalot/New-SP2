@@ -25,3 +25,26 @@ void Loadcoord(const char* file_path, cornercoord& coord)
 		}
 	}
 }
+
+
+void Loadcoord(const char* file_path, float& radius)
+{
+	std::ifstream fileStream(file_path, std::ios::binary);
+	if (!fileStream.is_open())
+	{
+		std::cout << "Unable to open " << file_path << ". Are you in the right directory ?\n";
+		return;
+	}
+	while (!fileStream.eof())
+	{
+		char buf[256];
+		fileStream.getline(buf, 256);
+		if (strncmp("v ", buf, 2) == 0)
+		{
+			Vector3 tempcoord;
+			sscanf_s((buf + 2), "%f%f%f", &tempcoord.x, &tempcoord.y, &tempcoord.z);
+			radius = Math::Max(radius, tempcoord.Length());
+		}
+	}
+}
+

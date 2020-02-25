@@ -8,6 +8,7 @@
 #include "LoadTGA.h"
 #include "Collision_detector.h"
 #include <string>
+#include "SceneManager.h"
 
 #define ROT_LIMIT 45.f;
 #define SCALE_LIMIT 5.f;
@@ -183,7 +184,7 @@ void SceneSkybox::Init()
 	Shop.Scale = Vector3(10, 10, 10);
 	Shop.RotateY = Vector4(90, 0, 1, 0);
 
-	meshList[GEO_SHOP_UI] = MeshBuilder::GenerateQuad("shopUI", Color(0, 0, 1), 10.f , 10.f);
+	meshList[GEO_SHOP_UI] = MeshBuilder::GenerateQuad("shopUI", Color(0, 0, 1), 10.f, 10.f);
 	meshList[GEO_SHOP_UI]->textureID = LoadTGA("image//shopUI.tga");
 	ShopUI.UI.translate = Vector3(0, 0, -45);
 	ShopUI.UI.Scale.x = 0.f;
@@ -220,6 +221,7 @@ void SceneSkybox::Init()
 	Platform[1].Scale = Vector3(1.2, 1.2, 1.2);
 	Platform[2].Scale = Vector3(1.2, 1.2, 1.2);
 	Platform[3].Scale = Vector3(1.2, 1.2, 1.2);
+	Loadcoord("OBJ//Platform.obj", PlatformR);
 
 	// Car 1
 	meshList[GEO_CAR1BODY] = MeshBuilder::GenerateOBJ("Car1", "OBJ//GuangThengCarBody.obj");
@@ -230,7 +232,6 @@ void SceneSkybox::Init()
 	meshList[GEO_CAR1BODY]->material.kShininess = 1.f;
 	Cars[0].translate = Vector3(0, 2.05, 0);
 	Cars[0].Scale = Vector3(1.55, 1.55, 1.55);
-	Loadcoord("OBJ//GuangThengCarBody.obj", CCar[0]);
 
 	meshList[GEO_CAR1WHEEL] = MeshBuilder::GenerateOBJ("Car1Wheel", "OBJ//GuangThengCarWheel.obj");
 	meshList[GEO_CAR1WHEEL]->textureID = LoadTGA("Image//GuangThengCarTex.tga");
@@ -254,7 +255,6 @@ void SceneSkybox::Init()
 	meshList[GEO_CAR2BODY]->material.kShininess = 1.f;
 	Cars[1].translate = Vector3(0, 3.2, 0);
 	Cars[1].Scale = Vector3(2, 2, 2);
-	Loadcoord("OBJ//RyanCarBody.obj", CCar[1]);
 
 	meshList[GEO_CAR2WHEEL] = MeshBuilder::GenerateOBJ("Car2Wheel", "OBJ//RyanCarWheel.obj");
 	meshList[GEO_CAR2WHEEL]->textureID = LoadTGA("Image//RyanCarWheelTex.tga");
@@ -276,7 +276,6 @@ void SceneSkybox::Init()
 	meshList[GEO_CAR3BODY]->material.kShininess = 1.f;
 	Cars[2].translate = Vector3(0, 3, 0);
 	Cars[2].Scale = Vector3(2, 2, 2);
-	Loadcoord("OBJ//JCCarBody.obj", CCar[2]);
 
 	meshList[GEO_CAR3WHEEL] = MeshBuilder::GenerateOBJ("Car3Wheel", "OBJ//JCCarWheel.obj");
 	meshList[GEO_CAR3WHEEL]->textureID = LoadTGA("Image//JCCarTex.tga");
@@ -298,7 +297,6 @@ void SceneSkybox::Init()
 	meshList[GEO_CAR4BODY]->material.kShininess = 1.f;
 	Cars[3].translate = Vector3(0, 4.7, 0);
 	Cars[3].Scale = Vector3(1.7, 1.7, 1.7);
-	Loadcoord("OBJ//JianFengCarBody.obj", CCar[3]);
 
 	meshList[GEO_CAR4WHEEL] = MeshBuilder::GenerateOBJ("Car4Wheel", "OBJ//JianFengCarWheel.obj");
 	meshList[GEO_CAR4WHEEL]->textureID = LoadTGA("Image//JianFengCarTex.tga");
@@ -324,6 +322,7 @@ void SceneSkybox::Init()
 	Door.RotateY.degree += 270;
 	Door.Scale = Vector3(1.5, 1.5, 1.5);
 
+
 	meshList[GEO_DOORSCREEN] = MeshBuilder::GenerateQuad("doorscreen", Color(0, 0, 0), 8, 9);
 	meshList[GEO_DOORSCREEN]->textureID = LoadTGA("Image//doorscreen.tga");
 	meshList[GEO_DOORSCREEN]->material.kAmbient.Set(0.7f, 0.7f, 0.7f);
@@ -331,7 +330,9 @@ void SceneSkybox::Init()
 	meshList[GEO_DOORSCREEN]->material.kSpecular.Set(1.f, 1.f, 1.f);
 	meshList[GEO_DOORSCREEN]->material.kShininess = 1.f;
 	DoorScreen.translate = Vector3(0, -0.2, 2);
-	DoorScreen.Scale = Vector3(1, 1, 1);
+	DoorScreen.Scale = Vector3(1, 1, 1);	
+	Loadcoord("OBJ//doorscreen.obj", CdoorScreen);
+	DoorCheck = Door + DoorScreen;
 
 
 	meshList[GEO_SLOT_BODY] = MeshBuilder::GenerateOBJ("slot body", "obj//slots_body.obj");
@@ -387,35 +388,35 @@ void SceneSkybox::Init()
 	meshList[GEO_HOLO0] = MeshBuilder::GenerateQuad("holo0", Color(0, 0, 1.f), 5.f, 6.f);
 	meshList[GEO_HOLO0]->textureID = LoadTGA("Image//carStatsUI.tga");
 	CarHologram[1].UI.translate = Vector3(-7, 0, 0);
-	CarHologram[1].UI.RotateY.degree = -90;
+	CarHologram[1].UI.RotateY.degree -= 90;
 	CarHologram[1].lengthX = 5.f;
 	CarHologram[1].lengthY = 6.f;
 
 	meshList[GEO_HOLO1] = MeshBuilder::GenerateQuad("holo1", Color(0, 0, 1.f), 1, 1);
 	meshList[GEO_HOLO1]->textureID = LoadTGA("Image//shopUI.tga");
 	CarHologram[0].UI.translate = Vector3(7, 0, 0);
-	CarHologram[0].UI.RotateY.degree = 90;
+	CarHologram[0].UI.RotateY.degree += 90;
 	CarHologram[0].lengthX = 5.f;
 	CarHologram[0].lengthY = 6.f;
 
 	meshList[GEO_HOLO2] = MeshBuilder::GenerateQuad("holo2", Color(0, 0, 1.f), 1, 1);
 	meshList[GEO_HOLO2]->textureID = LoadTGA("Image//shopUI.tga");
 	CarHologram[3].UI.translate = Vector3(-7, 0, 0);
-	CarHologram[3].UI.RotateY.degree = -90;
+	CarHologram[3].UI.RotateY.degree -= 90;
 	CarHologram[3].lengthX = 5.f;
 	CarHologram[3].lengthY = 6.f;
 
 	meshList[GEO_HOLO3] = MeshBuilder::GenerateQuad("holo3", Color(0, 0, 1.f), 1, 1);
 	meshList[GEO_HOLO3]->textureID = LoadTGA("Image//shopUI.tga");
 	CarHologram[2].UI.translate = Vector3(7, 0, 0);
-	CarHologram[2].UI.RotateY.degree = 90;
+	CarHologram[2].UI.RotateY.degree += 90;
 	CarHologram[2].lengthX = 5.f;
 	CarHologram[2].lengthY = 6.f;
 
 	hologramcamera_leave = true;
 	camera.Init(Aplayer.translate + Vector3(0, 8, 15), Vector3(Aplayer.translate) + Vector3(0, 5, 0), Vector3(0, 1, 0));
 	firstpersoncamera.Init(Vector3(Aplayer.translate.x, Aplayer.translate.y + 6.1, Aplayer.translate.z), Vector3(0, Aplayer.translate.y + 6.1, 0), Vector3(0, 1, 0));
-	hologramcamera.Init(Aplayer.translate + Vector3(0,5,0), Vector3(ShopUI.UI.translate) + Vector3(0, 5, 0), Vector3(0, 1, 0));
+	hologramcamera.Init(Aplayer.translate + Vector3(0, 5, 0), Vector3(ShopUI.UI.translate) + Vector3(0, 5, 0), Vector3(0, 1, 0));
 	currency = 5000;
 	CameraSwitch = 0;
 }
@@ -427,8 +428,7 @@ void SceneSkybox::Update(double dt)
 	{
 		glDisable(GL_CULL_FACE);
 	}
-	else if (Application::IsKeyPressed(0x32)
-		)
+	else if (Application::IsKeyPressed(0x32))
 	{
 		glEnable(GL_CULL_FACE);
 	} 
@@ -461,26 +461,33 @@ void SceneSkybox::Update(double dt)
 
 	//UI Text (for movement) logic
 	if (Application::IsKeyPressed('W') && CameraSwitch != 2) {
+		UIText[0] = "W - Move Forward";
 		PlayerMoveUp(dt);
 	}
 	if (Application::IsKeyPressed('A') && CameraSwitch != 2) {
+		UIText[0] = "A - Move Left";
 		PlayerMoveLeft(dt);
 	}
 	if (Application::IsKeyPressed('S') && CameraSwitch != 2) {
+		UIText[0] = "S - Move Backwards";
 		PlayerMoveDown(dt);
 	}
 	if (Application::IsKeyPressed('D') && CameraSwitch != 2) {
+		UIText[0] = "D - Move Right";
 		PlayerMoveRight(dt);
 	}
 	if (Application::IsKeyPressed(VK_LEFT) && CameraSwitch != 2) {
+		UIText[0] = "Q - Rotate Left";
 		Aplayer.RotateY.degree += (float)(playerTurningSpeed * dt);
 	}
 	if (Application::IsKeyPressed(VK_RIGHT) && CameraSwitch != 2) {
+		UIText[0] = "E - Rotate Right";
 		Aplayer.RotateY.degree -= (float)(playerTurningSpeed * dt);
 	}
 	//uncomment cameratoggle when 3rd and 1st person camera are working
-	UIText[0] = "Currency owned: ";
-
+	else {
+		UIText[0] = "W A S D - Movement, Q E - Rotation";
+	}
 	//NPC
 	if ((ANPC.translate - Aplayer.translate).Length() > 3) {
 		for (int i = 0; i < 4; ++i) {
@@ -509,8 +516,24 @@ void SceneSkybox::Update(double dt)
 	}
 	else UIText[1] = "^ v < > -  Camera Pan";
 
+	//UI Text (for 1st/3rd person camera) logic
+	if (Application::IsKeyPressed(VK_TAB) && BounceTime <= GetTickCount()) {
+		if (CameraSwitch == 0) CameraSwitch = 1; //1st person
+		else if (CameraSwitch != 2)
+		{
+			CameraSwitch = 0; //3rd person
+		}
+		BounceTime = GetTickCount() + 500.f;
+	}
 
-	
+	if (CameraSwitch == 2 && hologramcamera_leave)
+	{
+		CameraSwitch = 0;
+	}
+
+	if (CameraToggle) UIText[2] = "(Press Tab to change) Current Camera: 1st Person";
+	else UIText[2] = "(Press Tab to change) Current Camera: 3rd Person";
+
 
 	// Rotate platform
 	if (Application::IsKeyPressed('N'))
@@ -585,9 +608,18 @@ void SceneSkybox::Update(double dt)
 			activate_slot_machine = 0;
 		}
 	}
+
 	//Holograms and Camera logic
 
-	if (DistanceCheck(Aplayer.translate, Shop.translate) && !hologramcamera_leave) 
+	if (Application::IsKeyPressed('V') && BounceTime <= GetTickCount())
+	{
+		if (hologramcamera_leave) hologramcamera_leave = false;
+		else hologramcamera_leave = true;
+		BounceTime = GetTickCount() + 500.f;
+
+	}
+
+	if (DistanceCheck(Aplayer.translate, Shop.translate) && !hologramcamera_leave)
 	{
 		CameraSwitch = 2;
 		hologramcamera.Update(dt, ShopUI, Aplayer, 15.f);
@@ -611,45 +643,21 @@ void SceneSkybox::Update(double dt)
 	{
 		if (DistanceCheck(Aplayer.translate, Platform[i].translate) && !hologramcamera_leave)
 		{
-		CameraSwitch = 2;
-		hologramcamera.Update(dt, CarHologram[i], Aplayer, 5.f);
+			CameraSwitch = 2;
+			hologramcamera.Update(dt, CarHologram[i], Aplayer, 5.f);
 		}
 		UpdateHologram(CarHologram[i], car_Stats[i], Platform[i], 5.f);
-		
+
 
 	}
-
-	//UI Text (for 1st/3rd person camera) logic
-	if (Application::IsKeyPressed('V') && BounceTime <= GetTickCount())
-	{
-		if (hologramcamera_leave) hologramcamera_leave = false;
-		else hologramcamera_leave = true;
-		BounceTime = GetTickCount() + 500.f;
-
+	//change Scene
+	if (collision_detector(DoorCheck, CdoorScreen, Aplayer, Cplayer)) {
+		SceneManager::currSceneID = SceneManager::S_DRIVESCENE;
 	}
-
-	if (Application::IsKeyPressed(VK_TAB) && BounceTime <= GetTickCount()) {
-		if (CameraSwitch == 0) CameraSwitch = 1; //1st person
-		else if (CameraSwitch != 2)
-		{
-			CameraSwitch = 0; //3rd person
-		}
-		BounceTime = GetTickCount() + 500.f;
-	}
-	
-	if (CameraSwitch == 2 && hologramcamera_leave)
-	{
-		CameraSwitch = 0;
-	}
-	
-	if (CameraToggle) UIText[2] = "(Press Tab to change) Current Camera: 1st Person";
-	else UIText[2] = "(Press Tab to change) Current Camera: 3rd Person";
-
-
+	UIText[0] = "Currency owned: ";
 
 	camera.Update(dt, Aplayer);
 	firstpersoncamera.Update(dt, Aplayer);
-	
 
 	++framespersecond;
 	currentTime = GetTickCount() * 0.001f;
@@ -678,7 +686,6 @@ void SceneSkybox::Render()
 		viewStack.LookAt(camera.position.x, camera.position.y, camera.position.z, camera.target.x, camera.target.y, camera.target.z, camera.up.x, camera.up.y, camera.up.z);
 		break;
 	}
-	
 	modelStack.LoadIdentity();
 
 	// passing the light direction if it is a direction light
@@ -752,51 +759,53 @@ void SceneSkybox::Render()
 	RenderMesh(meshList[GEO_LIGHTSPHERE], false);
 	modelStack.PopMatrix();
 
-	RenderObj(meshList[GEO_DICE], ANPC, true, false);
 	RenderObj(meshList[GEO_DICE], Aplayer, true, false);
-	
+	RenderObj(meshList[GEO_DICE], ANPC, true, false);
+
 	ShopUI.UI.RotateY.degree = 0.f;
 	RenderObj(meshList[GEO_SHOP], Shop, true, false);
-	
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+
+	//shop
+//	glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 	RenderObj(meshList[GEO_SHOP_UI], ShopUI.UI, false, false);
 	RenderShopStats(car_Stats[ShopUI_Scroll]);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+//	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	modelStack.PopMatrix(); //player
 	//Render Platform, Car, Wheel
+
 	for (int carnumber = 0; carnumber < 4; carnumber++)
 	{
 		if (hologramcamera_leave)
 		{
 			if (carnumber % 2 == 0) CarHologram[carnumber].UI.RotateY.degree = 90.f;
-			else CarHologram[carnumber].UI.RotateY.degree =- 90.f;
+			else CarHologram[carnumber].UI.RotateY.degree = -90.f;
 
 			RenderObj(meshList[GEO_PLATFORM], Platform[carnumber], false, false);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+//			glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 			RenderObj(meshList[GEO_HOLO0], CarHologram[carnumber].UI, false, false);
 			RenderStats(CarHologram[carnumber], car_Stats[carnumber]);
 
 			modelStack.Translate(-2.5f, -(3.f / 7.f) * CarHologram[carnumber].lengthY, 0.f);
-			modelStack.Scale(1, 0.5f, 1);			
+			modelStack.Scale(1, 0.5f, 1);
 			if (!car_Stats[carnumber].lock) RenderText(meshList[GEO_TEXT], "Bought", Color(0, 1, 0));
 			else RenderText(meshList[GEO_TEXT], "Cost: " + std::to_string(car_Stats[carnumber].cost), Color(0, 1, 0));
 			modelStack.Scale(1, 2.f, 1);
 			modelStack.Translate(1.f, (3.f / 7.f) * CarHologram[carnumber].lengthY, 0.f);
 
 			modelStack.PopMatrix();
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+//			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		}
 		else
 		{
 			CarHologram[carnumber].UI.RotateY.degree = 0.f;
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+//			glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 			RenderObj(meshList[GEO_HOLO0], CarHologram[carnumber].UI, false, false);
 			RenderStats(CarHologram[carnumber], car_Stats[carnumber]);
 			modelStack.PopMatrix();
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+//			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 			RenderObj(meshList[GEO_PLATFORM], Platform[carnumber], false, false);
 		}
-		
+
 
 		if (carnumber == 0)
 		{
@@ -843,7 +852,7 @@ void SceneSkybox::Render()
 
 	
 
-	if ((Aplayer.translate - Platform[0].translate).Length() < 13 || (Aplayer.translate - Platform[1].translate).Length() < 13 || (Aplayer.translate - Platform[2].translate).Length() < 13 || (Aplayer.translate - Platform[3].translate).Length() < 13)
+	if ((Aplayer.translate - Platform[0].translate).Length() < 15 || (Aplayer.translate - Platform[1].translate).Length() < 15 || (Aplayer.translate - Platform[2].translate).Length() < 15 || (Aplayer.translate - Platform[3].translate).Length() < 15)
 	{
 		RenderTextOnScreen(meshList[GEO_TEXT], "N and M to rotate platform", Color(0, 1, 0), 2, 0, 4); // Rotate Text
 	}
@@ -851,7 +860,7 @@ void SceneSkybox::Render()
 	RenderTextOnScreen(meshList[GEO_TEXT], std::to_string(fps) + " frames/second", Color(0, 1, 0), 2, 0, 0); //frames
 	RenderTextOnScreen(meshList[GEO_TEXT], UIText[0] + std::to_string(currency), Color(0, 1, 0), 2, 0, 1); //Camera Movement
 	RenderTextOnScreen(meshList[GEO_TEXT], UIText[1], Color(0, 1, 0), 2, 0, 2); //Camera Pan
-	RenderTextOnScreen(meshList[GEO_TEXT], UIText[2], Color(0, 1, 0), 2, 0, 3); //Camera Toggle
+	RenderTextOnScreen(meshList[GEO_TEXT], UIText[2], Color(0, 1, 0), 2, 0, 3); //Camera Toggle		
 }
 
 void SceneSkybox::Exit()
@@ -1022,6 +1031,7 @@ void SceneSkybox::UpdateHologram(HologramUI& UI, CarStats& car_Stats, TRS Object
 {
 	if (DistanceCheck(Aplayer.translate, ObjectDisplay.translate))
 	{
+
 		if (Application::IsKeyPressed(VK_RETURN) && currency >= car_Stats.cost && car_Stats.lock)
 		{
 			car_Stats.lock = false;
@@ -1030,6 +1040,7 @@ void SceneSkybox::UpdateHologram(HologramUI& UI, CarStats& car_Stats, TRS Object
 
 		if (UI.UI.translate.y < targetY) UI.UI.translate.y += (targetY / 20.f);
 		if (UI.UI.Scale.x < 1.f) UI.UI.Scale.x += 0.05f;
+
 
 		for (int i = 0; i < 3; ++i)
 		{
@@ -1058,7 +1069,7 @@ void SceneSkybox::PlayerMoveUp(double dt)
 	} 
 	for (int i = 0; i < 4; i++)
 	{
-		if (collision_detector(Aplayer, Cplayer, Platform[i], CCar[i]))
+		if (collision_detector(Aplayer, Cplayer, Platform[i], PlatformR))
 		{
 			Aplayer.translate.z -= cos(Math::DegreeToRadian(Aplayer.RotateY.degree)) * (float)(playerMovementSpeed * dt);
 			Aplayer.translate.x -= sin(Math::DegreeToRadian(Aplayer.RotateY.degree)) * (float)(playerMovementSpeed * dt);
@@ -1076,7 +1087,7 @@ void SceneSkybox::PlayerMoveDown(double dt)
 	}
 	for (int i = 0; i < 4; i++)
 	{
-		if (collision_detector(Aplayer, Cplayer, Platform[i], CCar[i]))
+		if (collision_detector(Aplayer, Cplayer, Platform[i], PlatformR))
 		{
 			Aplayer.translate.z += cos(Math::DegreeToRadian(Aplayer.RotateY.degree)) * (float)(playerMovementSpeed * dt);
 			Aplayer.translate.x += sin(Math::DegreeToRadian(Aplayer.RotateY.degree)) * (float)(playerMovementSpeed * dt);
@@ -1095,7 +1106,7 @@ void SceneSkybox::PlayerMoveRight(double dt)
 	}
 	for (int i = 0; i < 4; i++)
 	{
-		if (collision_detector(Aplayer, Cplayer, Platform[i], CCar[i]))
+		if (collision_detector(Aplayer, Cplayer, Platform[i], PlatformR))
 		{
 			Aplayer.translate.z -= sin(Math::DegreeToRadian(Aplayer.RotateY.degree)) * (float)(playerMovementSpeed * dt);
 			Aplayer.translate.x += cos(Math::DegreeToRadian(Aplayer.RotateY.degree)) * (float)(playerMovementSpeed * dt);
@@ -1113,7 +1124,7 @@ void SceneSkybox::PlayerMoveLeft(double dt)
 	}
 	for (int i = 0; i < 4; i++)
 	{
-		if (collision_detector(Aplayer, Cplayer, Platform[i], CCar[i]))
+		if (collision_detector(Aplayer, Cplayer, Platform[i], PlatformR))
 		{
 			Aplayer.translate.z += sin(Math::DegreeToRadian(Aplayer.RotateY.degree)) * (float)(playerMovementSpeed * dt);
 			Aplayer.translate.x -= cos(Math::DegreeToRadian(Aplayer.RotateY.degree)) * (float)(playerMovementSpeed * dt);
@@ -1176,14 +1187,20 @@ void SceneSkybox::RenderObj(Mesh* mesh, TRS& trs, bool end, bool enableLight)
 		modelStack.PopMatrix();
 }
 
+bool SceneSkybox::DistanceCheck(Vector3 Object1, Vector3 Object2) //true: if they are close enough
+{
+	Vector3 Distance = Object1 - Object2;
+	if (Distance.Length() <= 15.f) return true;
+	else return false;
+}
+
 void SceneSkybox::RenderStats(HologramUI UI, CarStats& car_Stats)
 {
-
 	if (UI.UI.Scale.x >= 1.f)
 	{
-	car_Stats.StatTRS[0].translate = Vector3(-((3.f / 14.f) * UI.lengthX) + (car_Stats.StatLevel[0] / 14.f), (5.5f / 14.f) * UI.lengthY, 0.1f);
-	car_Stats.StatTRS[1].translate = Vector3(-((3.f / 14.f) * UI.lengthX) + (car_Stats.StatLevel[1] / 14.f), (2.f / 14.f) * UI.lengthY, 0.1f);
-	car_Stats.StatTRS[2].translate = Vector3(-((3.f / 14.f) * UI.lengthX) + (car_Stats.StatLevel[2] / 14.f), -(2.f / 14.f) * UI.lengthY, 0.1f);
+		car_Stats.StatTRS[0].translate = Vector3(-((3.f / 14.f) * UI.lengthX) + (car_Stats.StatLevel[0] / 14.f), (5.5f / 14.f) * UI.lengthY, 0.1f);
+		car_Stats.StatTRS[1].translate = Vector3(-((3.f / 14.f) * UI.lengthX) + (car_Stats.StatLevel[1] / 14.f), (2.f / 14.f) * UI.lengthY, 0.1f);
+		car_Stats.StatTRS[2].translate = Vector3(-((3.f / 14.f) * UI.lengthX) + (car_Stats.StatLevel[2] / 14.f), -(2.f / 14.f) * UI.lengthY, 0.1f);
 		for (int i = 0; i < 3; ++i)
 		{
 			car_Stats.StatTRS[i].Scale.y = 1.f / 14.f * UI.lengthY;
@@ -1198,9 +1215,9 @@ void SceneSkybox::RenderShopStats(CarStats& car_Stats)
 {
 	if (ShopUI.UI.Scale.x >= 1.f)
 	{
-	car_Stats.StatTRS[0].translate = Vector3(-((3.f / 14.f) * 10.f) + (car_Stats.StatLevel[0] / 14.f), -(1.5f / 14.f) * 10.f, 0.1f);
-	car_Stats.StatTRS[1].translate = Vector3(-((3.f / 14.f) * 10.f) + (car_Stats.StatLevel[1] / 14.f), -(3.5f / 14.f) * 10.f, 0.1f);
-	car_Stats.StatTRS[2].translate = Vector3(-((3.f / 14.f) * 10.f) + (car_Stats.StatLevel[2] / 14.f), -(5.5f / 14.f) * 10.f, 0.1f);
+		car_Stats.StatTRS[0].translate = Vector3(-((3.f / 14.f) * 10.f) + (car_Stats.StatLevel[0] / 14.f), -(1.5f / 14.f) * 10.f, 0.1f);
+		car_Stats.StatTRS[1].translate = Vector3(-((3.f / 14.f) * 10.f) + (car_Stats.StatLevel[1] / 14.f), -(3.5f / 14.f) * 10.f, 0.1f);
+		car_Stats.StatTRS[2].translate = Vector3(-((3.f / 14.f) * 10.f) + (car_Stats.StatLevel[2] / 14.f), -(5.5f / 14.f) * 10.f, 0.1f);
 
 		for (int i = 0; i < 3; ++i)
 		{
@@ -1208,22 +1225,15 @@ void SceneSkybox::RenderShopStats(CarStats& car_Stats)
 			RenderObj(meshList[GEO_CAR_STAT], car_Stats.StatTRS[i], true, false);
 		}
 
-	
-			for (int i = 3; i < 6; ++i)
-			{
-				car_Stats.StatTRS[i].Scale.y = 1.f / 14.f * ShopUI.lengthY;
-				car_Stats.StatTRS[i].translate = Vector3(car_Stats.StatTRS[i - 3].translate.x + ((car_Stats.StatLevel[i] + car_Stats.StatLevel[i - 3]) / 14.f), car_Stats.StatTRS[i - 3].translate.y, 0.1f);
-				RenderObj(meshList[GEO_CAR_STAT_UPGRADE], car_Stats.StatTRS[i], true, false);
-			}
-		
+
+		for (int i = 3; i < 6; ++i)
+		{
+			car_Stats.StatTRS[i].Scale.y = 1.f / 14.f * ShopUI.lengthY;
+			car_Stats.StatTRS[i].translate = Vector3(car_Stats.StatTRS[i - 3].translate.x + ((car_Stats.StatLevel[i] + car_Stats.StatLevel[i - 3]) / 14.f), car_Stats.StatTRS[i - 3].translate.y, 0.1f);
+			RenderObj(meshList[GEO_CAR_STAT_UPGRADE], car_Stats.StatTRS[i], true, false);
+		}
+
 
 	} //end ui scale.x if 
-}
-
-bool SceneSkybox::DistanceCheck(Vector3 Object1, Vector3 Object2) //true: if they are close enough
-{
-	Vector3 Distance = Object1 - Object2;
-	if (Distance.Length() <= 10.f) return true;
-	else return false;
 }
 
