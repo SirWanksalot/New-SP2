@@ -75,13 +75,19 @@
     <ClInclude Include="Source\SceneManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\CItemList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Source\CarStats.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\HologramUI.h">
+    <ClInclude Include="Source\HologramCamera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\HologramCamera.h">
+    <ClInclude Include="Source\HologramUI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -134,13 +140,19 @@
     <ClCompile Include="Source\SceneManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\CItemList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Source\CarStats.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\HologramUI.cpp">
+    <ClCompile Include="Source\HologramCamera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\HologramCamera.cpp">
+    <ClCompile Include="Source\HologramUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

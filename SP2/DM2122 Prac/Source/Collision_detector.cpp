@@ -33,8 +33,13 @@ bool collision_detector(TRS obj1, cornercoord dimensions_obj1, TRS obj2, cornerc
 		&& obj1.translate.z + dimensions_obj1.minZ * obj1.Scale.z <= obj2.translate.z + dimensions_obj2.maxZ * obj2.Scale.z;
 }
 
-bool collision_detector(TRS obj1, cornercoord dimensions_obj1, TRS obj2, float radius)
+bool collision_detector(TRS obj1, cornercoord dimension_obj1, TRS obj2, float radius)
 {
+	float x = Math::Max(obj1.translate.x + dimension_obj1.minX * obj1.Scale.x
+		, Math::Min(obj2.translate.x, obj1.translate.x + dimension_obj1.maxX * obj1.Scale.x));
+	float z = Math::Max(obj1.translate.z + dimension_obj1.minZ * obj1.Scale.z
+		, Math::Min(obj2.translate.z, obj1.translate.z + dimension_obj1.maxZ));
 
-	return false;
+	float shortestdist = sqrt((x - obj2.translate.x) * (x - obj2.translate.x) + (z - obj2.translate.z) * (z - obj2.translate.z));
+	return shortestdist < radius * obj2.Scale.x;
 }

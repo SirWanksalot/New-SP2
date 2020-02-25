@@ -9,10 +9,10 @@
 #include "Light.h"
 #include "Loadcornercoord.h"
 #include "Collision_detector.h"
+#include "CItemList.h"
 #include "CarStats.h"
 #include "HologramUI.h"
 #include "HologramCamera.h"
-
 
 class SceneSkybox : public Scene
 {
@@ -116,6 +116,7 @@ private:
 	FirstPersonCamera firstpersoncamera;
 	HologramCamera hologramcamera;
 
+
 	int fps;
 	float framespersecond;
 	float lastTime;
@@ -135,6 +136,7 @@ private:
 	CarStats car_Details;
 	CarStats car_Stats[4];
 	int ShopUI_Scroll;
+
 	std::string UIText[3];
 	//UIText[0] - Movement text
 	//UIText[1] - Camera movement text
@@ -142,20 +144,21 @@ private:
 
 	int CameraSwitch;
 	bool CameraToggle;
-	bool hologramcamera_leave;
-	//Toggle between first and third person cam, false = 1st, true = 3rd
+	bool hologramcamera_leave;	//Toggle between first and third person cam, false = 1st, true = 3rd
 	double BounceTime;
 	//For camera to toggle without immediately switching back
 
 	//cars
 	TRS Platform[4];
+	float PlatformR;
 	TRS Cars[4];
-	cornercoord CCar[4];
 	TRS CarWheel[4][4];
 
 	//door 
 	TRS Door;
+	TRS DoorCheck;
 	TRS DoorScreen;
+	cornercoord CdoorScreen;
 
 	//slot machine
 	TRS Aslot_body;
@@ -187,7 +190,7 @@ private:
 	void RenderObj(Mesh* mesh, TRS& trs, bool end , bool enableLight);
 	bool DistanceCheck(Vector3 Object1, Vector3 Object2);
 	void RenderStats(HologramUI UI, CarStats& car_Stats);
-	void RenderShopStats(CarStats& car_Stats);
+	void RenderShopStats(CarStats& car_Stats);	
 	void RenderSlotImage(Mesh* mesh, TRS& trs, int image);
 	void UpdateHologram(HologramUI& UI, CarStats& car_Stats, TRS ObjectDisplay, float targetY);
 
